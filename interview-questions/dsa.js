@@ -1,5 +1,5 @@
 
-
+// service now interview 
 function removeAt(arr,index){
     for(let i=index; i< arr.length-1; i++){
         arr[i] = arr[i+1];
