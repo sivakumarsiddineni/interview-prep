@@ -1,0 +1,375 @@
+<html>
+
+</html>
+
+<script>
+    //wipro interview  hash map  or add sum two array elements 
+    function hasMap(arr, target) {
+        let map = new Map();
+        for (let i = 0; i < arr.length; i++) {
+            let complemet = target - arr[i]
+            if (map.has(complemet)) {
+                return [complemet, arr[i]]
+            }
+            map.set(arr[i], i);
+        }
+        return false;
+    }
+
+    console.log(hasMap([2, 6, 8, 9], 12));
+
+    // Max sub Array negetive numbers
+    function maxSubArray(nums) {
+        let currSum = 0;
+        let max = 0
+        for (let i = 0; i < nums.length; i++) {
+            currSum += nums[i];
+            max = Math.max(max, currSum);
+            if (currSum < 0) {
+                currSum = 0;
+            }
+        }
+
+        return max;
+    }
+
+    console.log(maxSubArray([-2, 1, 5, 1, -3, -2]));
+
+    // slide window sub arrays (non negetive numbers); (important)
+    function maxSumSubarrayOfSizeK(nums, k) {
+        let maxWindow = 0;
+        let maxSum = Number.NEGATIVE_INFINITY;;
+        for (let i = 0; i < k; i++) {
+            maxWindow += nums[i];
+        }
+        maxSum = maxWindow;
+        for (let i = k; i < nums.length; i++) {
+            maxWindow += nums[i] - nums[i - k];
+            maxSum = Math.max(maxSum, maxWindow)
+        }
+        console.log(maxSum)
+
+    }
+
+    console.log(maxSumSubarrayOfSizeK([2, 1, 5, 1, 3, 2], 3)); // Output: 9 (5+1+3)
+
+
+
+    function objtoArray(arr) {
+        const result = arr.reduce((acc, curr) => {
+            acc[curr] = curr;  // store as key:value
+            return acc;
+        }, {}); // initial value is empty object
+        console.log(result);
+    }
+
+    objtoArray(['a', 'b', 'c']);
+
+    // array element find duplcates
+    function findDuplicates(arr) {
+        let freq = {};
+        let result = [];
+        for (let data of arr) {
+            freq[data] = (freq[data] || 0) + 1
+        }
+        for (let key in freq) {
+            if (freq[key] > 1) {
+                result.push(key)
+            }
+        }
+    }
+
+    console.log(findDuplicates([1, 2, 3, 2, 4, 1, 5, 1])); // [2, 1]
+
+    //10. String Compression
+
+    function compressString(str) {
+        let count = 1;
+        let result = '';
+
+        for (let i = 0; i < str.length; i++) {
+            if (str[i] === str[i + 1]) {
+                count++;
+            } else {
+                result += str[i] + count;
+                count = 1;
+            }
+            console.log(str[i])
+
+        }
+        return result;
+
+    }
+
+    console.log(compressString("aabcccccaaa")); // "a2b1c5a3"
+
+    //9. Find Longest Common Prefix
+
+    function longestCommonPrefix(strs) {
+        let prefix = strs[0];
+        for (let i = 0; i < strs.length; i++) {
+            console.log(strs[i].slice(0, 2));
+            while (strs[i].indexOf(prefix) !== 0) {
+                prefix = prefix.slice(0, -1);
+            }
+        }
+        console.log(prefix)
+
+    }
+
+    console.log(longestCommonPrefix(["flower", "flow", "fooight"])); // "fl"
+
+    //Capitalize First Letter of Each Word
+    function capitalizeWords(str) {
+        return str.split(' ').map(word => {
+            word.charAt(0).toUpperCase() + word.slice(1)
+        }).join(' ');
+    }
+
+
+    console.log(capitalizeWords('hello world'));
+
+
+    function lengthOfLongestSubstring(s) {
+        let set = new Set();
+        let left = 0;
+        let maxLen = 0;
+        for (let right = 0; right < s.length; right++) {
+            while (set.has(s[right])) {
+                 set.delete(s[right]);
+                 left++
+            }
+            set.add(s[right]);
+            maxLen = Math.max(maxLen, right - left + 1)
+        }
+        return maxLen;
+    }
+    console.log(lengthOfLongestSubstring("abcabcbb")); // 3 ("abc")
+
+    function removeDuplicates(str){
+       return [...new Set(str)].join('');
+      }
+
+     console.log(removeDuplicates('abcabcabc'))
+
+
+    let result = 0;
+    for (let i = 1; i <= 5; i++) {
+        // console.log(i)
+        console.log(result += i);
+        //console.log(result)
+        if (i % 2 === 0) {
+            // console.log(result)
+            // result *= 2;
+        }
+    }
+    // console.log(result);
+
+    for (var i = 0; i < 3; i++) {
+        (function (j) {
+            setTimeout(function () {
+                console.log(j);
+            }, 1000);
+        })(i);
+    }
+    // output 123
+
+    let array = [
+        {
+            name: 'abc',
+            age: 30,
+            salary: 20,
+        },
+        {
+            name: 'bbbc',
+            age: 30,
+            salary: 20,
+        },
+        {
+            name: 'abc',
+            age: 30,
+            salary: 20,
+        }
+    ]
+
+    function removeDuplicates(arr) {
+        return arr.filter(
+            (res, index, self) =>
+                index === self.findIndex((i) => i.name === res.name)
+        );
+    }
+
+    console.log(removeDuplicates(array));
+
+    // remove duplicates in array
+
+    // 𝗟𝗮𝗿𝗴𝗲𝘀𝘁 𝟯-𝗦𝗮𝗺𝗲-𝗗𝗶𝗴𝗶𝘁 𝗡𝘂𝗺𝗯𝗲𝗿 𝗶𝗻 𝗦𝘁𝗿𝗶𝗻𝗴 
+    function largest3SameDigitNumber(s) {
+        let max = ''
+        for (let i = 0; i <= s.length - 3; i++) {
+            let chunk = s.slice(i, i + 3);
+            if (chunk[0] === chunk[1] && chunk[1] === chunk[2]) {
+                if (chunk > max) {
+                    max = chunk;
+                }
+
+            }
+        }
+        return max || -1;
+    }
+
+    console.log(largest3SameDigitNumber("6777133339")); // "777"
+
+
+// is prime numbers from 1 to 100
+// This function checks if a number is prime and prints all prime numbers from 1 to 100
+function isPrimeFind() {
+  for (let i = 2; i < 100; i++) {
+    let isPrime = true; // reset for each number
+
+    for (let j = 2; j <= Math.sqrt(i); j++) { 
+      if (i % j === 0) {
+        isPrime = false;
+        break;
+      }
+    }
+
+    if (isPrime) {
+      console.log(i); // print only prime numbers
+    }
+  }
+}
+
+isPrimeFind();
+
+
+// debounce vs throttle in javascript
+
+function debounce(func,dealy){
+    let timer;
+    return function(...args){
+        clearTimeout(timer);
+     timer= setTimeout(()=>{
+        func.apply(this,args)
+     },dealy)
+    }
+}
+
+let debounceCall=debounce(()=>{
+    console.log('debounce function called');
+},200)
+debounceCall('a');
+debounceCall('ab');
+debounceCall('abc');
+
+// throttle function or rate limit function
+
+function throttle(func,dealy){
+    let lastCall=0;
+    return function(...args){
+        const date =new Date.now();
+        if(date-lastCall >= dealy){
+            func.apply(this.args);
+            lastCall=date
+        }
+    }
+}
+
+throttle(()=>{
+    console.log('throttle function called');
+}, 2000) // this function will be called at most once every 2 seconds
+
+
+window.addEventListener("mo", throttle);
+
+var name = "test";
+function print(){
+  console.log(name);
+  var name = "test1";
+}
+print();
+
+// polyfill for filter method
+Array.prototype.myFilter=function (callBack){
+    const result=[];
+    for(let i =0;i<this.length; i++){
+        if(callBack(this[i],i,this)){
+          result.push(this[i])
+        }
+    }
+    console.log(result, 'result');
+  return result;
+}
+
+const nums = [1, 2, 3, 4, 5];
+const resultData = nums.myFilter((res)=>res > 3);
+
+// ployfill for Reduce method 
+Array.prototype.myReduce =function (callBack,initialValue){
+    let accumulator = initialValue;
+    let startIndex = 0;
+    for(let i=0;i<this.length;i++){
+       accumulator =  callBack(accumulator,this[i],i,this);
+    }
+   return accumulator
+}
+
+console.log(nums.myReduce((acc,curr)=> acc+curr,0));
+
+// ployfill for Map method 
+Array.prototype.myMap =function (callBack){
+   const result = [];
+   for(let i=0;i<this.length;i++){
+        result.push(callBack(this[i],i,this));
+   }
+    return result;
+}
+console.log(nums.Mymap((res)=>res*2));
+
+// string max window string occurance
+function findIndexFirstOccurance(haystack,needle){
+    let m = haystack.length;
+    let n = needle.length;
+    
+    for(let i=0; i <= m-n; i++){
+        let j=0;
+        for(j=0; j<n; j++){
+            if(haystack[i+j] !== needle[j]){
+                break;
+            }
+        }
+        
+        if(j === n){
+            return i;
+        }
+    }
+    return -1
+}
+
+console.log(findIndexFirstOccurance('leetcode','leeto'));
+
+
+// move zeros to right hand side unsorted array 
+
+function moveDuplicatesRight(arr) {
+    let set = new Set();
+    let unique = [];
+    let duplicates = [];
+    for(let data of arr){
+        if(set.has(data)){
+            duplicates.push(data)
+        }else{
+            set.add(data)
+            unique.push(data)
+        }
+    }
+    
+ return [...unique,...duplicates];
+}
+
+console.log(moveDuplicatesRight([4, 5, 6, 4, 3, 6, 2, 2, 7]));
+// 👉 [4, 5, 6, 3, 2, 7, 4, 6, 2]
+
+
+
+</script>
