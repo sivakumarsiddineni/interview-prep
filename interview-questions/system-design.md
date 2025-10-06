@@ -20,11 +20,3 @@ how to scale the application
 --> code spliting how to taken browser (chunks each file);
 
 --> corn job schedule every day at 12 clock (data is duplicated how to handle );
-
-
-
-
-
-
-
-
