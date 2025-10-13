@@ -17,5 +17,3 @@ function lengthOfLongestSubstring(s) {
 lengthOfLongestSubstring('abcabcdef')
 // output : 6 
 // Valid Parentheses
-
-

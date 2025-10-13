@@ -1,6 +1,6 @@
 
 
---> how to start the application from the scrach frond end || banck Application
+--> how to start the application from the scrach frond end || backend Application
 
 --> what is use of package-lock json file  ? are commit this file to prod env ?
 

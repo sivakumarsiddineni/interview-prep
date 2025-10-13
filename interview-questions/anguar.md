@@ -12,6 +12,6 @@ angular latest fetures in 18 version (Standalone Components);
 
 what is callstack in javascript 
 
-javascript is synchronous or asynchornous
+javascript is synchronous or asynchornous 
 
 
