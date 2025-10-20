@@ -7,6 +7,7 @@
 --> what is the use of module fedation pattern(micro front end ) how to connect one application another application 
 
 --> login to the application email id and password (password hash, salt) encriton is 1000 times it will take some time how to handle 10k users login to the application 
+
 how to scale the application 
 
 --> what is memory in node js diffence between (time and memory);
@@ -19,4 +20,6 @@ how to scale the application
 
 --> code spliting how to taken browser (chunks each file);
 
---> corn job schedule every day at 12 clock (data is duplicated how to handle );
+--> corn job schedule every day at 12 clock (data is duplicated how to handle);
+
+

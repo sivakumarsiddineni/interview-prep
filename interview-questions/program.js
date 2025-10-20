@@ -92,9 +92,7 @@ function binarySeacrh(arr,target){
    let right = arr.length -1;
  
   while(left <= right){
-    
       let mid = Math.floor((left + right) /2);
-      //console.log(arr[mid])
       if(arr[mid] === target ){
           return mid;
       }else if(arr[mid] < target){
@@ -111,22 +109,222 @@ function binarySeacrh(arr,target){
 console.log(binarySeacrh([2,3,4,5,6,7,8,9],9));
 
 
-// array flat infinity without this method
-
-function recursiveIteration(arr){
-    for (let data of arr){
-         if(Array.isArray(data)){
-          recursiveIteration(data)
-          }else{
-              console.log(data)
-          }
+function bubbleSort(arr){
+    let n = arr.length;
+    let isSwapped;
+    
+    for(let i=0;i<n-1; i++){
+          isSwapped  = false;
+          
+         for(let j=0; j< n-i-1 ;j++){
+             if(arr[j] > arr[j+1]){
+                 [arr[j],arr[j+1]] = [ arr[j+1],arr[j] ]
+                 isSwapped = true
+             }
+         }
+        
+    
     }
+    
+    return arr;
 }
-recursiveIteration([1,2,3,[4,5,6,[7,8,[10,11]]],9]);
+
+console.log(bubbleSort([64, 34, 25, 12, 22, 11, 90]));
+
+
+
+
+Function.prototype.myCall = function(context,...args){
+    context = context || globalThis;
+    let fn = Symbol();
+    context[fn] = this;
+    let result = context[fn](...args);
+    return result;
+}
+
+Function.prototype.myApply = function (context,...args){
+    context = context || globalThis;
+    let fn = Symbol();
+    context[fn] = this;
+    let result = context[fn](...args)
+    return result;
+}
+
+
+function sayHello(age) {
+  console.log(`Hello ${this.name}, age ${age}`);
+}
+
+const person = { name: "Siva" };
+sayHello.myApply(person, [28,29]); // Hello Siva, age 28
+
+
+
+// remove element in array 
+
+function removeElement(arr,target){
+    let x =0;
+    for(let i=0; i<arr.length; i++){
+        if(arr[i] !== target){
+            arr[x] = arr[i];
+            x = x+1;
+        }
+    }
+     
+  arr.length = x;
+  return arr;
+}
+
+console.log(removeElement([1,2,2,3,4,5,6],2));
+
+
+
+
+// max consective ones in array 
+function macConsigutiveOnes(arr){
+    let currentCount = 0;
+    let maxCount = 0
+    
+    for(let count of arr){
+        if(count === 1){
+            currentCount++;
+        }else{
+            maxCount = Math.max(currentCount,maxCount);
+            currentCount = 0;
+        }
+    }
+   
+   return maxCount
+}
+
+console.log(macConsigutiveOnes([1,1,0,1,1,1,0,0,1,1,0,1,1]));
+
+// output 3
+
+function findMissingNumberInArray(arr){
+    let n = arr.length;
+    let val = (n * (n+1)/2);
+    let total = arr.reduce((a,b)=> a+b,0);
+    return val - total;
+}
+
+
+console.log(findMissingNumberInArray([3,0,1,4]));
+
+// ouput 2
 
 
 
 
 
+function mergeTwoSortedArrays(nums1, m, nums2, n) {
+  // Copy only the first m elements
+  let nums1Copy = nums1.slice(0, m);
+  let p1 = 0;
+  let p2 = 0;
+
+  for (let i = 0; i < m + n; i++) {
+    if (p2 >= n || (p1 < m && nums1Copy[p1] < nums2[p2])) {
+      nums1[i] = nums1Copy[p1];
+      p1++;
+    } else {
+      nums1[i] = nums2[p2];
+      p2++;
+    }
+  }
+
+  console.log(nums1);
+}
+
+mergeTwoSortedArrays([1, 2, 3, 0, 0, 0], 3, [2, 4, 5], 3);
 
 
+// run sequential tasks 
+// implementt a function run sequentailly  tasks  that excutes an array of functions in sequence returning final result
+async function runSequentially(tasks){
+    let result = null;
+    for(let task of tasks){
+        result = await task(result);
+    }  
+    return result;
+}
+
+const tasks = [
+    async () => 1,
+    async (n) => n + 2,
+    async (n) => n * 3
+    ]
+
+runSequentially(tasks).then((res)=>{
+    console.log(res,'res')
+})
+
+
+// deep clone object recursive
+
+function deepClone(obj){
+    if(obj === null || typeof obj !== 'object'){
+        return obj;
+    }
+
+    let clone =Array.isArray(obj) ? [] :  {};
+    
+    for(let key in obj){
+       if(obj.hasOwnProperty(key)){
+            clone[key] = deepClone(obj[key]);
+       }
+    }
+  
+   return clone;
+}
+
+const obj ={a:1, b:{ c:2 } }
+
+let clone = deepClone(obj);
+console.log(clone)
+
+
+// async retries method call
+
+function fetchWithRetry(fn,retries,delay){
+    return new Promise((resolve,reject)=>{
+        fn().then(resolve)
+        .catch((err)=>{
+            if(retries === 0) {
+                return err;
+            }
+            else {
+                
+            setTimeout(()=>{
+                fetchWithRetry(fn,retries-1,delay)
+            },delay)
+            
+            }
+        })
+        
+    })
+}
+
+function getDataFromServer(){
+   return fetch('https://dummyjson.com/test')
+    .then((res) => res.json());
+}
+
+
+fetchWithRetry(getDataFromServer,3,1000).then((res)=>{
+    console.log(res)
+})
+
+// crate a custom currying function in javascript 
+
+function sum(...args) {
+    const res = args.reduce((a, b) => a + b, 0);
+    const myFunc = (num) => {
+        return sum(num, ...args);   // recursive call
+    }
+    myFunc.value = res;  // store result
+    return myFunc;
+}
+
+console.log(sum(4, 6, 8, 10).value);  // 28
+console.log(sum(4)(6)(8)(10).value);  // 28

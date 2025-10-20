@@ -14,6 +14,7 @@ horizontal scaling for application
 
 how to increase memory size in node js
 
+https://blog.bitsrc.io/implementing-the-api-gateway-pattern-in-node-js-2cb39d174094
 
 
 
