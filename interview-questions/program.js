@@ -37,7 +37,7 @@ function isValidShuffle(str1,str2,result){
           j++;
        }
         else{
-            return false 
+            return false;
        }
         k++;
     }
@@ -50,7 +50,6 @@ console.log(isValidShuffle("abc", "def", "adbcef")); // ✅ true
 
 
 // macquire group programing task
-
 function sameple(arr){
     let firstHigh = -Infinity;
     let secondHigh = -Infinity;
@@ -73,7 +72,7 @@ sameple([1,2,4,5,6,7,8,9]);
 
 function roberyHouse(arr){
     let n = arr.length;
-    if(n===0) return 0;
+    if (n===0) return 0;
     if (n === 1) return arr[0];
 
     let rob = arr[n-1] + roberyHouse(arr.slice(0,n-2));
@@ -150,15 +149,12 @@ Function.prototype.myApply = function (context,...args){
     return result;
 }
 
-
 function sayHello(age) {
   console.log(`Hello ${this.name}, age ${age}`);
 }
 
 const person = { name: "Siva" };
 sayHello.myApply(person, [28,29]); // Hello Siva, age 28
-
-
 
 // remove element in array 
 
@@ -212,9 +208,6 @@ function findMissingNumberInArray(arr){
 console.log(findMissingNumberInArray([3,0,1,4]));
 
 // ouput 2
-
-
-
 
 
 function mergeTwoSortedArrays(nums1, m, nums2, n) {
@@ -285,7 +278,6 @@ console.log(clone)
 
 
 // async retries method call
-
 function fetchWithRetry(fn,retries,delay){
     return new Promise((resolve,reject)=>{
         fn().then(resolve)
@@ -294,7 +286,6 @@ function fetchWithRetry(fn,retries,delay){
                 return err;
             }
             else {
-                
             setTimeout(()=>{
                 fetchWithRetry(fn,retries-1,delay)
             },delay)
@@ -328,3 +319,70 @@ function sum(...args) {
 
 console.log(sum(4, 6, 8, 10).value);  // 28
 console.log(sum(4)(6)(8)(10).value);  // 28
+
+
+function maxAreaBrute(height) {
+  let max = 0;
+  for (let i = 0; i < height.length; i++) {
+    for (let j = i + 1; j < height.length; j++) {
+      const area = Math.min(height[i], height[j]) * (j - i);
+      if (area > max) max = area;
+    }
+  }
+  return max;
+}
+
+console.log(maxAreaBrute([1,8,6,2,5,4,8,3,7]))
+// water tapping problem 
+
+// Implment a * polygons 
+
+//   *
+//   * *
+//  * * *
+//   * * 
+//    * 
+
+// LRU cache 
+
+
+class LRUCache {
+    constructor(capacity){
+        this.capacity = capacity;
+        this.cache = new Map();
+    }
+    
+    get(key){
+        if(!this.cache.has(key)){
+            return -1;
+        }
+        
+        let value = this.cache.get(key);
+        this.cache.delete(key);
+        this.cache.set(key,value);
+        return value;
+        
+    }
+    
+    put(key,value){
+        if(this.cache.has(key)){
+            this.cache.delete(key);
+        }else if(this.cache.size === this.capacity){
+            let lrukey = this.cache.keys().next().value;
+            this.cache.delete(lrukey);
+        }
+         this.cache.set(key,value);
+        
+    }
+
+}
+
+
+const cache = new LRUCache(2);
+
+console.log(cache.get(2));  // 2
+cache.put(3, 3);
+console.log(cache.get(2));  // -1
+
+
+

@@ -35,7 +35,7 @@ function minValueFind(array,target){
     }
 
 
-    sumWindow = maxWindow;
+    maxWindow = sumWindow;
 
     for(let i=target; i<array.length;i++){
         maxWindow += array[i] - array[i-target];

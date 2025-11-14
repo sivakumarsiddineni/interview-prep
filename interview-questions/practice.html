@@ -248,7 +248,7 @@ isPrimeFind();
 function debounce(func,dealy){
     let timer;
     return function(...args){
-        clearTimeout(timer);
+    clearTimeout(timer);
      timer= setTimeout(()=>{
         func.apply(this,args)
      },dealy)
@@ -287,7 +287,7 @@ function print(){
   console.log(name);
   var name = "test1";
 }
-print();
+print(); // undefined
 
 // polyfill for filter method
 Array.prototype.myFilter=function (callBack){
