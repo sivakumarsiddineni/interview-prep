@@ -48,7 +48,6 @@ function isValidShuffle(str1,str2,result){
 console.log(isValidShuffle("abc", "def", "adbcef")); // ✅ true
 
 
-
 // macquire group programing task
 function sameple(arr){
     let firstHigh = -Infinity;
@@ -383,6 +382,5 @@ const cache = new LRUCache(2);
 console.log(cache.get(2));  // 2
 cache.put(3, 3);
 console.log(cache.get(2));  // -1
-
 
 

@@ -7,7 +7,7 @@ const users=[
 
 
 let data = users.map((res)=>{
-    let obj ={ name:'' }
+    let obj = { name:'' }
     obj.name = res.firstName + " " + res.lastName;
    return obj;
 })
@@ -25,7 +25,6 @@ function data(){
 
 data()
 
-<div>{undefined}</div>
 
 
 

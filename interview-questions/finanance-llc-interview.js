@@ -51,10 +51,8 @@ console.log(shuffleArray([1,2,3,4,5,6,7,8,9]))
 
 
 
-
-
-
-
-
-
-
+// imp questions and ans
+// tuples in typescript 
+// interface how many ways to use like (interface, variable declaration to assign , implements )
+// alias vs interface
+// Type Narrowing  (i have a function then i want to get the value is some times its string and some times its number inside the function i want to check to typeof of || instanceof )
