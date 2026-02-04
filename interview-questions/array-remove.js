@@ -1,6 +1,6 @@
 
 function roateArray(arr,k){
-    for(let i=0; i<k; i++){
+    for(let i = 0; i < k; i++){
         let lastElement = arr.pop();
         arr.unshift(lastElement);
     }

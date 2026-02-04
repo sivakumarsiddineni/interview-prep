@@ -87,7 +87,7 @@ roberyHouse([2, 7, 9, 3, 1]);
 // binary search problem 
 function binarySeacrh(arr,target){
    let left = 0;
-   let right = arr.length -1;
+   let right = arr.length - 1;
  
   while(left <= right){
       let mid = Math.floor((left + right) /2);
@@ -120,8 +120,7 @@ function bubbleSort(arr){
                  isSwapped = true
              }
          }
-        
-    
+
     }
     
     return arr;
@@ -158,8 +157,8 @@ sayHello.myApply(person, [28,29]); // Hello Siva, age 28
 // remove element in array 
 
 function removeElement(arr,target){
-    let x =0;
-    for(let i=0; i<arr.length; i++){
+    let x = 0;
+    for(let i = 0; i < arr.length; i++){
         if(arr[i] !== target){
             arr[x] = arr[i];
             x = x+1;
@@ -259,7 +258,7 @@ function deepClone(obj){
         return obj;
     }
 
-    let clone =Array.isArray(obj) ? [] :  {};
+    let clone = Array.isArray(obj) ? [] :  {};
     
     for(let key in obj){
        if(obj.hasOwnProperty(key)){
@@ -319,6 +318,22 @@ function sum(...args) {
 console.log(sum(4, 6, 8, 10).value);  // 28
 console.log(sum(4)(6)(8)(10).value);  // 28
 
+function sum(...args){
+   let total = args.reduce((acc,cur) => acc+ cur,0);
+   
+   return function next(...nextArgs){
+       if(nextArgs.length === 0){
+         return total;
+       } 
+       total += nextArgs.reduce((acc,cur)=> acc+ cur,0);
+       return next
+   }
+    
+}
+
+console.log(sum(4)(6)(8)(10)())
+// custom currying implementaion 
+
 
 function maxAreaBrute(height) {
   let max = 0;
@@ -332,7 +347,29 @@ function maxAreaBrute(height) {
 }
 
 console.log(maxAreaBrute([1,8,6,2,5,4,8,3,7]))
+
 // water tapping problem 
+
+
+function maxArea(height){
+    let left = 0;
+    let right = height.length - 1;
+    let maxArea = 0;
+    while(left < right){
+      const area = Math.min(height[left],height[right]) * (right- left);
+      maxArea = Math.max(maxArea,area);
+      if(height[left] < height[right]){
+          left++
+      }else{
+          right--;
+      }
+    }
+    return maxArea
+}
+
+let arr = [1,8,6,2,5,4,8,3,7];
+console.log(maxArea(arr))
+
 
 // Implment a * polygons 
 
@@ -343,8 +380,6 @@ console.log(maxAreaBrute([1,8,6,2,5,4,8,3,7]))
 //    * 
 
 // LRU cache 
-
-
 class LRUCache {
     constructor(capacity){
         this.capacity = capacity;
@@ -384,3 +419,40 @@ cache.put(3, 3);
 console.log(cache.get(2));  // -1
 
 
+// memozation function cache data  and HOC func
+function cacheFunc(fn){
+    let cache = {};
+    return function(...args){
+        let cacheKey = args.join('')
+        if(cacheKey in  cache){
+            console.log("From cache data")
+            return cache[cacheKey];
+        }else{
+            console.log('From calculation')
+           let result = fn(...args);
+           cache[cacheKey] = result;
+           return result;
+        }
+        
+    }
+}
+
+function add(...args){
+    return args.reduce((a,b)=>a+b,0);
+}
+
+let cacheAdd = cacheFunc(add);
+
+console.log(cacheAdd(10,20,30,40));
+console.log(cacheAdd(10,20,30,40));
+
+let obj1 = { name:'siva', age: 30 };
+let obj2 = { name:'siva', age: 30 };
+console.log(obj1 === obj2); // false;
+console.log(obj1 == obj2); // false;
+
+console.log('ab' + 'cd'); // abcd
+console.log('ab' - 'cd'); // NAN
+
+console.log(true || 'hello'); // true
+console.log(true && 'hello'); // hello
