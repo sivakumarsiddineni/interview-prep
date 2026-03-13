@@ -446,10 +446,10 @@ let cacheAdd = cacheFunc(add);
 console.log(cacheAdd(10,20,30,40));
 console.log(cacheAdd(10,20,30,40));
 
-let obj1 = { name:'siva', age: 30 };
-let obj2 = { name:'siva', age: 30 };
-console.log(obj1 === obj2); // false;
-console.log(obj1 == obj2); // false;
+    let obj1 = { name:'siva', age: 30 };
+    let obj2 = { name:'siva', age: 30 };
+    console.log(obj1 === obj2); // false;
+    console.log(obj1 == obj2); // false;
 
 console.log('ab' + 'cd'); // abcd
 console.log('ab' - 'cd'); // NAN

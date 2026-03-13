@@ -75,3 +75,18 @@ package.json vs package-lock.json
 11. Decode String
 12. Longest Palindromic…
 
+
+function intersection(arr1,arr2){
+    let set = new Set(arr1);
+    let result = new Set();
+    
+    for(let data of arr2){
+        if(set.has(data)){
+            result.add(data)
+        }
+    }
+    
+    return Array.from(result)
+};
+
+console.log(intersection([1,2,2,1], [2,2])); // [2]

@@ -57,10 +57,7 @@ const lessInfo : personalInfo = {
      lastName : 'Siddineni',
 }
 
-console.log(lessInfo)
+console.log(lessInfo);
 
 
-
-
-
-
+// pick 

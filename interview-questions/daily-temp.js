@@ -4,7 +4,7 @@ function dailyTemperatures(arr){
     let length = new Array(n).fill(0);
     let stack = [];
 
-    for(let i=0; i<arr.length; i++){
+    for(let i = 0; i < arr.length; i++){
         while(stack.length > 0 && arr[i] >  arr[stack[stack.length-1]]){
             let previousIndex  = stack.pop();
             length[previousIndex] = i - previousIndex;

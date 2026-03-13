@@ -1,26 +1,25 @@
 
 // Array sub sets
-let arr = [1, 2, 3]
+    let arr = [1, 2, 3]
 
-function subset() {
-    let result = [];
-    const backtrack = (path, start) => {
-        result.push([...path]);
-        for (let i = start; i < arr.length; i++) {
-            path.push(arr[i]);
-            backtrack(path, i + 1)
-            path.pop();
+    function subset() {
+        let result = [];
+        const backtrack = (path, start) => {
+            result.push([...path]);
+            for (let i = start; i < arr.length; i++) {
+                path.push(arr[i]);
+                backtrack(path, i + 1)
+                path.pop();
+            }
         }
+        backtrack([], 0)
+        return result;
     }
-    backtrack([], 0)
-    return result;
-}
 
 
-console.log(subset());
+    console.log(subset());
 
 // Permutations of array
-
 
 function permutations(nums) {
   const result = []

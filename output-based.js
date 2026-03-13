@@ -11,7 +11,7 @@
 
 // Start
 // After one second Done
-//End
+// End
 
 
 const delayPromise = new Promise(resolve => setTimeout(resolve, 0));

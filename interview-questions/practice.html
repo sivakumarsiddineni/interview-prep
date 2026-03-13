@@ -266,7 +266,7 @@ debounceCall('abc');
 function throttle(func,dealy){
     let lastCall=0;
     return function(...args){
-        const date =new Date.now();
+        const date = new Date.now();
         if(date-lastCall >= dealy){
             func.apply(this.args);
             lastCall=date
