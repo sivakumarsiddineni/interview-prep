@@ -75,3 +75,21 @@ let obj = {
  
  console.log(myGenObj.next().value);
 
+
+ // maximum-depth-of-binary-tree
+
+
+ var maxDepth = function(root) {
+    if(!root){
+       return 0;
+    }
+
+    let maxDepth = 0;
+    let transversal = (cur,depth)=>{
+        maxDepth = Math.max(maxDepth,depth);
+        cur.left && transversal(cur.left,depth+1);
+        cur.right && transversal(cur.right,depth+1);
+    }
+    transversal(root,1);
+    return maxDepth
+};

@@ -172,8 +172,6 @@ function removeElement(arr,target){
 console.log(removeElement([1,2,2,3,4,5,6],2));
 
 
-
-
 // max consective ones in array 
 function macConsigutiveOnes(arr){
     let currentCount = 0;
@@ -349,8 +347,6 @@ function maxAreaBrute(height) {
 console.log(maxAreaBrute([1,8,6,2,5,4,8,3,7]))
 
 // water tapping problem 
-
-
 function maxArea(height){
     let left = 0;
     let right = height.length - 1;
@@ -446,10 +442,10 @@ let cacheAdd = cacheFunc(add);
 console.log(cacheAdd(10,20,30,40));
 console.log(cacheAdd(10,20,30,40));
 
-    let obj1 = { name:'siva', age: 30 };
-    let obj2 = { name:'siva', age: 30 };
-    console.log(obj1 === obj2); // false;
-    console.log(obj1 == obj2); // false;
+let obj1 = { name:'siva', age: 30 };
+let obj2 = { name:'siva', age: 30 };
+console.log(obj1 === obj2); // false;
+console.log(obj1 == obj2); // false;
 
 console.log('ab' + 'cd'); // abcd
 console.log('ab' - 'cd'); // NAN

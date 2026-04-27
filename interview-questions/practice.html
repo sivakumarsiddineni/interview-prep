@@ -326,26 +326,26 @@ Array.prototype.myMap =function (callBack){
 console.log(nums.Mymap((res)=>res*2));
 
 // string max window string occurance
-function findIndexFirstOccurance(haystack,needle){
-    let m = haystack.length;
-    let n = needle.length;
-    
-    for(let i=0; i <= m-n; i++){
-        let j=0;
-        for(j=0; j<n; j++){
-            if(haystack[i+j] !== needle[j]){
+function findIndexFirstOccurance(haystack, needle) {
+    if (needle === "") return 0;
+
+    for (let i = 0; i <= haystack.length - needle.length; i++) {
+        let match = true;
+
+        for (let j = 0; j < needle.length; j++) {
+            if (haystack[i + j] !== needle[j]) {
+                match = false;
                 break;
             }
         }
-        
-        if(j === n){
-            return i;
-        }
+
+        if (match) return i;
     }
-    return -1
+
+    return -1;
 }
 
-console.log(findIndexFirstOccurance('leetcode','leeto'));
+console.log(findIndexFirstOccurance('leetcode', 'leeto'));
 
 
 // move zeros to right hand side unsorted array 

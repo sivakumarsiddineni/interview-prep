@@ -24,4 +24,3 @@ promise vs async
 🔟 Currying for Infinite Sum
 👉 sum(10)(20)(30)() → 60
 👉 sum(10)(20)(30)(40)(50)(60)() → 210
-
